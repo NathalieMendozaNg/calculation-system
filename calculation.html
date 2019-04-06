@@ -10,7 +10,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <title>MyCalculation</title>
+    <title>MyCalculator</title>
     <style> 
     body{
         background-color:black; 
@@ -20,75 +20,170 @@
   </head>
   <body>
       <div class="row justify-content-center">
-          <div class="col-md-4 bg-light">
+          <div class="col-md-2">
               <table class="table">
                     <thead>
                         <tr>
-                            <th colspan="4"><input type="text" class="form-control text-right" id="result" readonly="">
+                            <th colspan="4"><input type="text" class="form-control text-right" id="result" readonly = "" >
                             </th>
                         </tr>
                         <tr>
-                            <th colspan="4"><input type="text" class="form-control text-right" id="solut"></th>
+                            <th colspan="4"><input type="text" class="form-control text-right" id="formula"></th>
                         </tr>
                     </thead>
                     <tbody>
                             <tr>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block" id="clean">C</button>
+                                <td colspan="3"><button type="button" id="clean" class="btn btn-outline-info btn-lg btn-block" onclick="clearInput()">C</button>
                                 </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">(</button>
-                                </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">)</button>
-                                </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">+</button>
+                                
+                                <td><button type="button" id="plus" class="btn btn-outline-info btn-lg btn-block btn-value">+</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">7</button>
+                                <td><button type="button" id="number" class="btn btn-outline-info btn-lg btn-block btn-value">7</button>
                                 </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">8</button>
+                                <td><button type="button" id="number" class="btn btn-outline-info btn-lg btn-block btn-value">8</button>
                                 </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">9</button>
+                                <td><button type="button" id="number" class="btn btn-outline-info btn-lg btn-block btn-value">9</button>
                                 </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">-</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">4</button>
-                                </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">5</button>
-                                </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">6</button>
-                                </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">*</button>
+                                <td><button type="button" id="minus" class="btn btn-outline-info btn-lg btn-block btn-value">-</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">1</button>
+                                <td><button type="button" id="number" class="btn btn-outline-info btn-lg btn-block btn-value">4</button>
                                 </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">2</button>
+                                <td><button type="button" id="number" class="btn btn-outline-info btn-lg btn-block btn-value">5</button>
                                 </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">3</button>
+                                <td><button type="button" id="number" class="btn btn-outline-info btn-lg btn-block btn-value">6</button>
                                 </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">/</button>
+                                <td><button type="button" id="mul" class="btn btn-outline-info btn-lg btn-block btn-value">*</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">0</button></td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block btn-value">.</button>
+                                <td><button type="button" id="number" class="btn btn-outline-info btn-lg btn-block btn-value">1</button>
                                 </td>
-                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block" id="cal">=</button>
+                                <td><button type="button" id="number" class="btn btn-outline-info btn-lg btn-block btn-value">2</button>
+                                </td>
+                                <td><button type="button" id="number" class="btn btn-outline-info btn-lg btn-block btn-value">3</button>
+                                </td>
+                                <td><button type="button" id="divide" class="btn btn-outline-info btn-lg btn-block btn-value">/</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><button type="button" id="number" class="btn btn-outline-info btn-lg btn-block btn-value">0</button></td>
+                                <td><button type="button" id="number" class="btn btn-outline-info btn-lg btn-block btn-value">.</button>
+                                </td>
+                                <td><button type="button" class="btn btn-outline-info btn-lg btn-block" id="count">=</button>
                                 </td>
                             </tr>
                     </tbody>
               </table>
+              
           </div>
       </div>
+
+      <!--方法-->
       <script>
-      
-      
-      
-      
-      
+        //在下層印出數字
+            function inputButton(){
+                var input = document.getElementById("formula");
+                var text = this.innerHTML;
+                input.value += text;
+            }
+
+            var inputButtonss = document.getElementsByClassName("btn-value");
+
+            for(var i = 0; i < inputButtonss.length; i++){
+                inputButtonss[i].onclick = inputButton;
+            }
+
+        //按鍵C清除建
+            function clearInput(){
+                var input = document.getElementById("formula");
+                var result = document.getElementById("result");
+
+                input.value = " ";
+                result.value = " ";
+            }
+
+            var Operator = "";
+            var temp = new Array();
+        //加號
+            function plus(){
+                var input = document.getElementById("formula");
+                var text = this.innerHTML;
+                input.value += text;
+                if (Operator != "+"){
+                    Operator = "+";
+                }
+            }
+            var plus_btn = document.getElementById("plus");
+            plus_btn.onclick = plus;
+        //減號
+            function minus(){
+                var input = document.getElementById("formula");
+                var text = this.innerHTML;
+                input.value += text;
+                if (Operator != "-"){
+                    Operator = "-";
+                }
+            }
+            var minus_btn = document.getElementById("minus");
+            minus_btn.onclick = minus;
+        //乘號
+            function mul(){
+                var input = document.getElementById("formula");
+                var text = this.innerHTML;
+                input.value += text;
+                if (Operator != "*"){
+                    Operator = "*";
+                }
+            }
+            var mul_btn = document.getElementById("mul");
+            mul_btn.onclick = mul;
+        //除號
+            function divide(){
+                var input = document.getElementById("formula");
+                var text = this.innerHTML;
+                input.value += text;
+                if (Operator != "/"){
+                    Operator = "/";
+                }
+            }
+            var divide_btn = document.getElementById("divide");
+            divide_btn.onclick = divide;
+
+        //運算
+            function Equal(){
+                var input = document.getElementById("formula");
+                //var number = document.getElementById("number");
+
+                switch (Operator){
+                    case "+":
+                        temp = input.value.split("+");
+                        result.value = parseFloat(temp[0]) + parseFloat(temp[1]);
+                        break;
+                    case "-":
+                        temp = input.value.split("-");
+                        result.value = parseFloat(temp[0]) - parseFloat(temp[1]);
+                        break;
+                    case "*":
+                        temp = input.value.split("*");
+                        result.value = parseFloat(temp[0]) * parseFloat(temp[1]);
+                        break;
+                    case "/":
+                        temp = input.value.split("/");
+                        result.value = parseFloat(temp[0]) / parseFloat(temp[1]);
+                        break;
+                }
+                //input.innerHTML;
+            }
+        //按鍵=等於
+            var Eqbtn = document.getElementById("count");
+            Eqbtn.onclick = Equal;
+            //console.log(Equal);
+
+
       
       </script>
   </body>
